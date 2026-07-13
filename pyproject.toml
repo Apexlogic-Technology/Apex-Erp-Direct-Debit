@@ -1,7 +1,7 @@
 [project]
 name = "apex_erp_direct_debit"
 authors = [
-    { name = "Apex", email = "" }
+    { name = "Apex", email = "info@apexlogic.com" }
 ]
 description = "Hubtel Direct Debit integration for ERPNext — Bridge (KolectPay/SMCollect) and Direct (Hubtel) modes"
 requires-python = ">=3.10"
