@@ -748,7 +748,7 @@ def retry_failed_installments():
 					title=f"DD: retry_failed_installments error on {row.inst_name}",
 					message=frappe.get_traceback(),
 				)
-					frappe.db.set_value("DD Installment Schedule", row.inst_name, "status", "Failed")
+				frappe.db.set_value("DD Installment Schedule", row.inst_name, "status", "Failed")
 
 
 # ─────────────────────────────────────────────────────────────────────────────

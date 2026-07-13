@@ -1,5 +1,6 @@
 [
   {
+    "name": "Customer-dd_section_break",
     "doctype": "Custom Field",
     "module": "Apex Erp Direct Debit",
     "dt": "Customer",
@@ -10,6 +11,7 @@
     "collapsible": 1
   },
   {
+    "name": "Customer-dd_mobile_number",
     "doctype": "Custom Field",
     "module": "Apex Erp Direct Debit",
     "dt": "Customer",
@@ -20,6 +22,7 @@
     "description": "Mobile wallet number for direct debit (e.g. 0244123456)"
   },
   {
+    "name": "Customer-dd_channel",
     "doctype": "Custom Field",
     "module": "Apex Erp Direct Debit",
     "dt": "Customer",
@@ -30,6 +33,7 @@
     "insert_after": "dd_mobile_number"
   },
   {
+    "name": "Customer-dd_col_break",
     "doctype": "Custom Field",
     "module": "Apex Erp Direct Debit",
     "dt": "Customer",
@@ -38,6 +42,7 @@
     "insert_after": "dd_channel"
   },
   {
+    "name": "Customer-dd_mandate",
     "doctype": "Custom Field",
     "module": "Apex Erp Direct Debit",
     "dt": "Customer",
@@ -50,6 +55,7 @@
     "description": "The customer's currently active mandate"
   },
   {
+    "name": "Customer-dd_mandate_status",
     "doctype": "Custom Field",
     "module": "Apex Erp Direct Debit",
     "dt": "Customer",
@@ -61,6 +67,7 @@
     "fetch_from": "dd_mandate.mandate_status"
   },
   {
+    "name": "Customer-dd_bridge_debtor_id",
     "doctype": "Custom Field",
     "module": "Apex Erp Direct Debit",
     "dt": "Customer",
