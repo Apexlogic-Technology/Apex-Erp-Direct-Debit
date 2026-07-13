@@ -4,7 +4,7 @@ All functions are referenced in hooks.py scheduler_events.
 """
 
 import frappe
-from frappe.utils import add_minutes, flt, now_datetime, today, getdate
+from frappe.utils import add_to_date, flt, now_datetime, today, getdate
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -19,7 +19,7 @@ def poll_pending_mandates():
 	"""
 	from apex_erp_direct_debit.services.provider_factory import get_provider
 
-	cutoff = add_minutes(now_datetime(), -4)
+	cutoff = add_to_date(now_datetime(), minutes=-4)
 
 	pending_mandates = frappe.get_all(
 		"DD Mandate",
@@ -67,7 +67,7 @@ def poll_pending_transactions():
 	"""
 	from apex_erp_direct_debit.services.provider_factory import get_provider
 
-	cutoff = add_minutes(now_datetime(), -5)
+	cutoff = add_to_date(now_datetime(), minutes=-5)
 
 	pending_txns = frappe.get_all(
 		"DD Transaction",
