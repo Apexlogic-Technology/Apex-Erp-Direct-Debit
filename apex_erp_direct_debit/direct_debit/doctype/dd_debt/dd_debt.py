@@ -1,6 +1,6 @@
 import frappe
 from frappe.model.document import Document
-from frappe.utils import add_days, add_months, add_weeks, flt, now_datetime, today
+from frappe.utils import add_days, add_months, flt, now_datetime, today
 
 
 class DDDebt(Document):
@@ -86,7 +86,7 @@ class DDDebt(Document):
 		if freq == "Daily":
 			return add_days(current_date, 1)
 		elif freq == "Weekly":
-			return add_weeks(current_date, 1)
+			return add_days(current_date, 7)
 		elif freq == "Monthly":
 			return add_months(current_date, 1)
 		return add_months(current_date, 1)
