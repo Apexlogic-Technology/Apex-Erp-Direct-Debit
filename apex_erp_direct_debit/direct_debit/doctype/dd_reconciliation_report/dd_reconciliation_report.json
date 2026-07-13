@@ -1,0 +1,159 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "DD-RECON-.YYYY.-.#####",
+ "creation": "2026-07-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "period_start",
+  "period_end",
+  "col_break_header",
+  "status",
+  "section_break_summary",
+  "total_debits_attempted",
+  "total_debits_success",
+  "total_debits_failed",
+  "col_break_summary",
+  "total_amount_collected",
+  "total_gateway_charges",
+  "unmatched_transactions",
+  "section_break_html",
+  "report_html",
+  "section_break_data",
+  "report_data"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "period_start",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Period Start",
+   "reqd": 1
+  },
+  {
+   "fieldname": "period_end",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Period End",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nSubmitted"
+  },
+  {
+   "fieldname": "section_break_summary",
+   "fieldtype": "Section Break",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "total_debits_attempted",
+   "fieldtype": "Int",
+   "label": "Total Debits Attempted"
+  },
+  {
+   "fieldname": "total_debits_success",
+   "fieldtype": "Int",
+   "label": "Successful"
+  },
+  {
+   "fieldname": "total_debits_failed",
+   "fieldtype": "Int",
+   "label": "Failed"
+  },
+  {
+   "fieldname": "col_break_summary",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount_collected",
+   "fieldtype": "Currency",
+   "label": "Total Amount Collected"
+  },
+  {
+   "fieldname": "total_gateway_charges",
+   "fieldtype": "Currency",
+   "label": "Total Gateway Charges"
+  },
+  {
+   "fieldname": "unmatched_transactions",
+   "fieldtype": "Int",
+   "label": "Unmatched / Inconclusive"
+  },
+  {
+   "fieldname": "section_break_html",
+   "fieldtype": "Section Break",
+   "label": "Report Preview"
+  },
+  {
+   "fieldname": "report_html",
+   "fieldtype": "HTML",
+   "label": "Reconciliation Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_data",
+   "fieldtype": "Section Break",
+   "label": "Transaction Detail",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "report_data",
+   "fieldtype": "JSON",
+   "label": "Report Data",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Direct Debit",
+ "name": "DD Reconciliation Report",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager"
+  }
+ ],
+ "sort_field": "period_start",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

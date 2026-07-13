@@ -1,0 +1,27 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"shortcut_section\",\"type\":\"header\",\"data\":{\"text\":\"Direct Debit Shortcuts\"}},{\"id\":\"shortcuts\",\"type\":\"shortcut\",\"data\":{\"shortcuts\":[{\"label\":\"Settings\",\"type\":\"DocType\",\"link_to\":\"DD Settings\",\"icon\":\"settings\",\"color\":\"blue\"},{\"label\":\"Mandates\",\"type\":\"DocType\",\"link_to\":\"DD Mandate\",\"icon\":\"user\",\"color\":\"green\"},{\"label\":\"Collections (Debts)\",\"type\":\"DocType\",\"link_to\":\"DD Debt\",\"icon\":\"calculator\",\"color\":\"orange\"},{\"label\":\"Transactions\",\"type\":\"DocType\",\"link_to\":\"DD Transaction\",\"icon\":\"payment\",\"color\":\"yellow\"},{\"label\":\"Reconciliation Reports\",\"type\":\"DocType\",\"link_to\":\"DD Reconciliation Report\",\"icon\":\"file\",\"color\":\"purple\"},{\"label\":\"Webhook Logs\",\"type\":\"DocType\",\"link_to\":\"DD Webhook Log\",\"icon\":\"list\",\"color\":\"grey\"},{\"label\":\"Notification Logs\",\"type\":\"DocType\",\"link_to\":\"DD Notification Log\",\"icon\":\"chat\",\"color\":\"pink\"}]}}]",
+ "creation": "2026-07-13 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "icon": "payment",
+ "is_public": 1,
+ "label": "Direct Debit",
+ "links": [],
+ "modified": "2026-07-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Direct Debit",
+ "name": "Direct Debit",
+ "owner": "Administrator",
+ "parent_page": "",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Accounts Manager"
+  }
+ ],
+ "sequence_id": 1,
+ "shortcuts": []
+}

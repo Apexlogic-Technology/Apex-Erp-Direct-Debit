@@ -1,0 +1,283 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "DD-DEBT-.YYYY.-.#####",
+ "creation": "2026-07-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "customer",
+  "customer_name",
+  "col_break_header",
+  "debt_status",
+  "section_break_agreement",
+  "mandate",
+  "sales_invoice",
+  "description",
+  "col_break_agreement",
+  "currency",
+  "bridge_debt_id",
+  "narration",
+  "section_break_financial",
+  "total_amount",
+  "outstanding_amount",
+  "col_break_financial",
+  "total_collected",
+  "section_break_installment",
+  "collection_type",
+  "installment_frequency",
+  "number_of_installments",
+  "col_break_installment",
+  "installment_amount",
+  "start_date",
+  "end_date",
+  "next_debit_date",
+  "section_break_schedule",
+  "installment_schedule",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "debt_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nPaused\nCompleted\nCancelled\nDefaulted"
+  },
+  {
+   "fieldname": "section_break_agreement",
+   "fieldtype": "Section Break",
+   "label": "Agreement Details"
+  },
+  {
+   "fieldname": "mandate",
+   "fieldtype": "Link",
+   "label": "DD Mandate",
+   "options": "DD Mandate"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "description": "Sales Invoice being collected against"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "description": "Purpose of this collection (shown on statements)"
+  },
+  {
+   "fieldname": "col_break_agreement",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "default": "GHS"
+  },
+  {
+   "fieldname": "bridge_debt_id",
+   "fieldtype": "Data",
+   "label": "Bridge Debt ID",
+   "read_only": 1,
+   "description": "Debt ID in KolectPay / SMCollect (Bridge mode only)"
+  },
+  {
+   "fieldname": "narration",
+   "fieldtype": "Small Text",
+   "label": "Debit Narration",
+   "description": "Sent to Hubtel as the charge description"
+  },
+  {
+   "fieldname": "section_break_financial",
+   "fieldtype": "Section Break",
+   "label": "Financial Summary"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Outstanding Amount",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_financial",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_collected",
+   "fieldtype": "Currency",
+   "label": "Total Collected",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_installment",
+   "fieldtype": "Section Break",
+   "label": "Collection Terms"
+  },
+  {
+   "default": "Installment",
+   "fieldname": "collection_type",
+   "fieldtype": "Select",
+   "label": "Collection Type",
+   "options": "One-Time\nInstallment\nSubscription",
+   "reqd": 1
+  },
+  {
+   "fieldname": "installment_frequency",
+   "fieldtype": "Select",
+   "label": "Frequency",
+   "options": "\nDaily\nWeekly\nMonthly",
+   "depends_on": "eval:in(['Installment','Subscription'], doc.collection_type)"
+  },
+  {
+   "fieldname": "number_of_installments",
+   "fieldtype": "Int",
+   "label": "Number of Installments",
+   "depends_on": "eval:doc.collection_type=='Installment'"
+  },
+  {
+   "fieldname": "col_break_installment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "installment_amount",
+   "fieldtype": "Currency",
+   "label": "Installment Amount",
+   "options": "currency",
+   "description": "Auto-calculated: Total ÷ Installments",
+   "read_only": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "read_only": 1,
+   "description": "Auto-calculated based on frequency × installments"
+  },
+  {
+   "fieldname": "next_debit_date",
+   "fieldtype": "Date",
+   "label": "Next Debit Date",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_schedule",
+   "fieldtype": "Section Break",
+   "label": "Installment Schedule"
+  },
+  {
+   "fieldname": "installment_schedule",
+   "fieldtype": "Table",
+   "label": "Installment Schedule",
+   "options": "DD Installment Schedule"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "DD Debt",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Direct Debit",
+ "name": "DD Debt",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User"
+  }
+ ],
+ "search_fields": "customer,customer_name,sales_invoice,debt_status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
+}

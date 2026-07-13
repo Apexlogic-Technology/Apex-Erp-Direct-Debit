@@ -1,0 +1,74 @@
+[
+  {
+    "doctype": "Custom Field",
+    "module": "Apex Erp Direct Debit",
+    "dt": "Customer",
+    "fieldname": "dd_section_break",
+    "fieldtype": "Section Break",
+    "label": "Direct Debit",
+    "insert_after": "website_url",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "module": "Apex Erp Direct Debit",
+    "dt": "Customer",
+    "fieldname": "dd_mobile_number",
+    "fieldtype": "Data",
+    "label": "DD Mobile Number",
+    "insert_after": "dd_section_break",
+    "description": "Mobile wallet number for direct debit (e.g. 0244123456)"
+  },
+  {
+    "doctype": "Custom Field",
+    "module": "Apex Erp Direct Debit",
+    "dt": "Customer",
+    "fieldname": "dd_channel",
+    "fieldtype": "Select",
+    "label": "DD Network",
+    "options": "\nMTN\nVodafone\nAirtelTigo",
+    "insert_after": "dd_mobile_number"
+  },
+  {
+    "doctype": "Custom Field",
+    "module": "Apex Erp Direct Debit",
+    "dt": "Customer",
+    "fieldname": "dd_col_break",
+    "fieldtype": "Column Break",
+    "insert_after": "dd_channel"
+  },
+  {
+    "doctype": "Custom Field",
+    "module": "Apex Erp Direct Debit",
+    "dt": "Customer",
+    "fieldname": "dd_mandate",
+    "fieldtype": "Link",
+    "label": "Active DD Mandate",
+    "options": "DD Mandate",
+    "insert_after": "dd_col_break",
+    "read_only": 1,
+    "description": "The customer's currently active mandate"
+  },
+  {
+    "doctype": "Custom Field",
+    "module": "Apex Erp Direct Debit",
+    "dt": "Customer",
+    "fieldname": "dd_mandate_status",
+    "fieldtype": "Data",
+    "label": "Mandate Status",
+    "insert_after": "dd_mandate",
+    "read_only": 1,
+    "fetch_from": "dd_mandate.mandate_status"
+  },
+  {
+    "doctype": "Custom Field",
+    "module": "Apex Erp Direct Debit",
+    "dt": "Customer",
+    "fieldname": "dd_bridge_debtor_id",
+    "fieldtype": "Data",
+    "label": "Bridge Debtor ID",
+    "insert_after": "dd_mandate_status",
+    "read_only": 1,
+    "description": "ID in KolectPay / SMCollect (Bridge mode)"
+  }
+]

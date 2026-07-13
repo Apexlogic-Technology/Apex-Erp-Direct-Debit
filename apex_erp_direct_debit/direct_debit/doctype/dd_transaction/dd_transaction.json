@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "DD-TXN-.YYYY.-.#####",
+ "creation": "2026-07-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "debt",
+  "mandate",
+  "company",
+  "col_break_header",
+  "status",
+  "initiated_at",
+  "section_break_amounts",
+  "amount",
+  "charge",
+  "col_break_amounts",
+  "channel",
+  "installment_row",
+  "section_break_refs",
+  "gateway_txn_id",
+  "network_txn_id",
+  "col_break_refs",
+  "client_reference_id",
+  "settled_at",
+  "section_break_outcome",
+  "payment_entry",
+  "reconciled",
+  "col_break_outcome",
+  "failure_reason",
+  "section_break_raw",
+  "raw_callback"
+ ],
+ "fields": [
+  {
+   "fieldname": "debt",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "DD Debt",
+   "options": "DD Debt",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "mandate",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "DD Mandate",
+   "options": "DD Mandate"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending\nSuccess\nFailed\nInconclusive\nReversed"
+  },
+  {
+   "fieldname": "initiated_at",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Initiated At"
+  },
+  {
+   "fieldname": "section_break_amounts",
+   "fieldtype": "Section Break",
+   "label": "Transaction Details"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "charge",
+   "fieldtype": "Currency",
+   "label": "Gateway Charge"
+  },
+  {
+   "fieldname": "col_break_amounts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "channel",
+   "fieldtype": "Data",
+   "label": "Channel (Network)"
+  },
+  {
+   "fieldname": "installment_row",
+   "fieldtype": "Data",
+   "label": "Installment Row Name",
+   "description": "Name of the DD Installment Schedule child row this debit belongs to",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_refs",
+   "fieldtype": "Section Break",
+   "label": "Gateway References"
+  },
+  {
+   "fieldname": "gateway_txn_id",
+   "fieldtype": "Data",
+   "label": "Gateway Transaction ID",
+   "search_index": 1
+  },
+  {
+   "fieldname": "network_txn_id",
+   "fieldtype": "Data",
+   "label": "Network Transaction ID"
+  },
+  {
+   "fieldname": "col_break_refs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_reference_id",
+   "fieldtype": "Data",
+   "label": "Client Reference ID",
+   "search_index": 1
+  },
+  {
+   "fieldname": "settled_at",
+   "fieldtype": "Datetime",
+   "label": "Settled At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_outcome",
+   "fieldtype": "Section Break",
+   "label": "Outcome"
+  },
+  {
+   "fieldname": "payment_entry",
+   "fieldtype": "Link",
+   "label": "Payment Entry",
+   "options": "Payment Entry",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "reconciled",
+   "fieldtype": "Check",
+   "label": "Reconciled"
+  },
+  {
+   "fieldname": "col_break_outcome",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "failure_reason",
+   "fieldtype": "Small Text",
+   "label": "Failure Reason",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_raw",
+   "fieldtype": "Section Break",
+   "label": "Raw Callback",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "raw_callback",
+   "fieldtype": "JSON",
+   "label": "Raw Callback Payload",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Direct Debit",
+ "name": "DD Transaction",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager"
+  },
+  {
+   "read": 1,
+   "role": "Accounts User"
+  }
+ ],
+ "search_fields": "client_reference_id,gateway_txn_id,status",
+ "sort_field": "initiated_at",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

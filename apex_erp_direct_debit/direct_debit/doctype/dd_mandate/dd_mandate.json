@@ -1,0 +1,251 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "DD-MND-.YYYY.-.#####",
+ "creation": "2026-07-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "customer",
+  "customer_name",
+  "col_break_header",
+  "mandate_status",
+  "source",
+  "section_break_contact",
+  "mobile_number",
+  "mobile_number_formatted",
+  "channel",
+  "col_break_contact",
+  "verification_type",
+  "otp_prefix",
+  "section_break_gateway",
+  "hubtel_preapproval_id",
+  "client_reference_id",
+  "col_break_gateway",
+  "bridge_debtor_id",
+  "bridge_debt_id",
+  "section_break_timestamps",
+  "approved_at",
+  "cancelled_at",
+  "col_break_timestamps",
+  "expires_at",
+  "section_break_meta",
+  "metadata",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "mandate_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Mandate Status",
+   "options": "Draft\nPending\nApproved\nFailed\nCancelled\nExpired"
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Source",
+   "options": "\nHubtel\nKolectPay\nSMCollect"
+  },
+  {
+   "fieldname": "section_break_contact",
+   "fieldtype": "Section Break",
+   "label": "Contact & Channel"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mobile_number_formatted",
+   "fieldtype": "Data",
+   "label": "Formatted Number (233...)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "channel",
+   "fieldtype": "Select",
+   "label": "Network Channel",
+   "options": "\nMTN\nVodafone\nAirtelTigo"
+  },
+  {
+   "fieldname": "col_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "verification_type",
+   "fieldtype": "Select",
+   "label": "Verification Type",
+   "options": "\nUSSD\nOTP",
+   "read_only": 1
+  },
+  {
+   "fieldname": "otp_prefix",
+   "fieldtype": "Data",
+   "label": "OTP Prefix",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_gateway",
+   "fieldtype": "Section Break",
+   "label": "Gateway References"
+  },
+  {
+   "fieldname": "hubtel_preapproval_id",
+   "fieldtype": "Data",
+   "label": "Hubtel Pre-Approval ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "client_reference_id",
+   "fieldtype": "Data",
+   "label": "Client Reference ID",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "col_break_gateway",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bridge_debtor_id",
+   "fieldtype": "Data",
+   "label": "Bridge Debtor ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "bridge_debt_id",
+   "fieldtype": "Data",
+   "label": "Bridge Debt ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_timestamps",
+   "fieldtype": "Section Break",
+   "label": "Lifecycle Timestamps"
+  },
+  {
+   "fieldname": "approved_at",
+   "fieldtype": "Datetime",
+   "label": "Approved At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cancelled_at",
+   "fieldtype": "Datetime",
+   "label": "Cancelled At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_timestamps",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expires_at",
+   "fieldtype": "Datetime",
+   "label": "Expires At",
+   "read_only": 1,
+   "description": "Auto-set to Approved At + 12 months"
+  },
+  {
+   "fieldname": "section_break_meta",
+   "fieldtype": "Section Break",
+   "label": "Raw Data",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "metadata",
+   "fieldtype": "JSON",
+   "label": "Gateway Metadata",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "DD Mandate",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Direct Debit",
+ "name": "DD Mandate",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "export": 1,
+   "print": 1,
+   "report": 1,
+   "role": "Accounts User"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

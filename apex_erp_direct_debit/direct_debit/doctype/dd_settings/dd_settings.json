@@ -1,0 +1,339 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:company",
+ "creation": "2026-07-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "is_enabled",
+  "integration_mode",
+  "col_break_general",
+  "webhook_url",
+  "section_break_hubtel",
+  "hubtel_client_id",
+  "hubtel_client_secret",
+  "col_break_hubtel",
+  "hubtel_collection_account",
+  "hubtel_webhook_secret",
+  "hubtel_allowed_ips",
+  "section_break_bridge",
+  "bridge_base_url",
+  "bridge_api_token",
+  "col_break_bridge",
+  "bridge_timeout_seconds",
+  "section_break_accounting",
+  "auto_create_payment_entry",
+  "debit_account",
+  "col_break_accounting",
+  "income_account",
+  "mode_of_payment",
+  "section_break_reminders",
+  "send_sms_reminders",
+  "sms_days_before",
+  "sms_provider",
+  "sms_api_key",
+  "col_break_reminders",
+  "send_whatsapp_reminders",
+  "whatsapp_api_url",
+  "whatsapp_api_token",
+  "whatsapp_sender_phone",
+  "send_failure_alerts",
+  "section_break_sync",
+  "max_retry_attempts",
+  "retry_interval_days",
+  "col_break_sync",
+  "auto_push_customer",
+  "auto_create_debt_on_invoice"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "integration_mode",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Integration Mode",
+   "options": "\nDirect - Hubtel\nBridge - KolectPay Business\nBridge - SMCollect",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_general",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "webhook_url",
+   "fieldtype": "Data",
+   "label": "Webhook URL (give this to Hubtel)",
+   "read_only": 1,
+   "default": "/api/method/apex_erp_direct_debit.api.webhook.handle_hubtel",
+   "description": "Set this as your callback URL in the Hubtel portal. Prefix with your site domain.",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "section_break_hubtel",
+   "fieldtype": "Section Break",
+   "label": "Hubtel Direct Debit Credentials",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "hubtel_client_id",
+   "fieldtype": "Data",
+   "label": "Hubtel Client ID",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "hubtel_client_secret",
+   "fieldtype": "Password",
+   "label": "Hubtel Client Secret",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "col_break_hubtel",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hubtel_collection_account",
+   "fieldtype": "Data",
+   "label": "Hubtel Collection Account",
+   "description": "Hubtel merchant account number",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "hubtel_webhook_secret",
+   "fieldtype": "Password",
+   "label": "Hubtel Webhook Secret",
+   "description": "Used to verify HMAC signatures on Hubtel callbacks",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "hubtel_allowed_ips",
+   "fieldtype": "Small Text",
+   "label": "Hubtel Allowed IPs",
+   "description": "Comma-separated. Leave blank to skip IP verification.",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "section_break_bridge",
+   "fieldtype": "Section Break",
+   "label": "Bridge Configuration",
+   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+  },
+  {
+   "fieldname": "bridge_base_url",
+   "fieldtype": "Data",
+   "label": "Bridge Base URL",
+   "description": "e.g. https://app.kolectpay.com",
+   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+  },
+  {
+   "fieldname": "bridge_api_token",
+   "fieldtype": "Password",
+   "label": "Bridge API Token",
+   "description": "Bearer token for the KolectPay/SMCollect External API",
+   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+  },
+  {
+   "fieldname": "col_break_bridge",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "30",
+   "fieldname": "bridge_timeout_seconds",
+   "fieldtype": "Int",
+   "label": "Request Timeout (seconds)",
+   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+  },
+  {
+   "fieldname": "section_break_accounting",
+   "fieldtype": "Section Break",
+   "label": "Accounting & Payment Settings"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_create_payment_entry",
+   "fieldtype": "Check",
+   "label": "Auto-Create Payment Entry on Successful Debit",
+   "description": "Creates a Payment Entry against the linked Sales Invoice when a debit succeeds"
+  },
+  {
+   "fieldname": "debit_account",
+   "fieldtype": "Link",
+   "label": "Bank / Mobile Money Receipt Account",
+   "options": "Account",
+   "description": "Account credited when a debit succeeds (e.g. Mobile Money Bank Account)"
+  },
+  {
+   "fieldname": "col_break_accounting",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Receivable / Income Account",
+   "options": "Account",
+   "description": "Account debited in Payment Entry (usually Accounts Receivable)"
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment",
+   "description": "Default: Mobile Money - Direct Debit"
+  },
+  {
+   "fieldname": "section_break_reminders",
+   "fieldtype": "Section Break",
+   "label": "SMS & WhatsApp Reminders",
+   "description": "Only used in Direct - Hubtel mode. Bridge mode leaves reminders to KolectPay/SMCollect.",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_sms_reminders",
+   "fieldtype": "Check",
+   "label": "Send Pre-Debit SMS Reminders",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "default": "1",
+   "fieldname": "sms_days_before",
+   "fieldtype": "Int",
+   "label": "Days Before Debit to Send SMS/WhatsApp",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && (doc.send_sms_reminders || doc.send_whatsapp_reminders)"
+  },
+  {
+   "fieldname": "sms_provider",
+   "fieldtype": "Select",
+   "label": "SMS Provider",
+   "options": "\nHubtel SMS\nCustom",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_sms_reminders"
+  },
+  {
+   "fieldname": "sms_api_key",
+   "fieldtype": "Password",
+   "label": "SMS API Key",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_sms_reminders"
+  },
+  {
+   "fieldname": "col_break_reminders",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_whatsapp_reminders",
+   "fieldtype": "Check",
+   "label": "Send Pre-Debit WhatsApp Reminders",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+  },
+  {
+   "fieldname": "whatsapp_api_url",
+   "fieldtype": "Data",
+   "label": "WhatsApp API URL",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_whatsapp_reminders"
+  },
+  {
+   "fieldname": "whatsapp_api_token",
+   "fieldtype": "Password",
+   "label": "WhatsApp API Token",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_whatsapp_reminders"
+  },
+  {
+   "fieldname": "whatsapp_sender_phone",
+   "fieldtype": "Data",
+   "label": "WhatsApp Sender Phone",
+   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_whatsapp_reminders"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_failure_alerts",
+   "fieldtype": "Check",
+   "label": "Send Failed Debit Alerts to Customer",
+   "description": "Send SMS or WhatsApp warning nudge if a debit fails"
+  },
+  {
+   "fieldname": "section_break_sync",
+   "fieldtype": "Section Break",
+   "label": "Retry & Sync Automation"
+  },
+  {
+   "default": "3",
+   "fieldname": "max_retry_attempts",
+   "fieldtype": "Int",
+   "label": "Max Retry Attempts",
+   "description": "Max failed debit retry attempts per installment"
+  },
+  {
+   "default": "1",
+   "fieldname": "retry_interval_days",
+   "fieldtype": "Int",
+   "label": "Retry Interval (Days)",
+   "description": "Days to wait before attempting another debit retry"
+  },
+  {
+   "fieldname": "col_break_sync",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_push_customer",
+   "fieldtype": "Check",
+   "label": "Auto-Push Customer to Bridge as Debtor",
+   "description": "When a Customer's DD mobile number is saved, push them to KolectPay/SMCollect",
+   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_create_debt_on_invoice",
+   "fieldtype": "Check",
+   "label": "Show 'Create DD Debt' Prompt on Invoice Submit",
+   "description": "Prompts admin to create a DD Debt when a Sales Invoice is submitted"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Direct Debit",
+ "name": "DD Settings",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Accounts Manager"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
