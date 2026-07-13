@@ -93,7 +93,7 @@ function _create_dd_debt_dialog(frm) {
         fieldtype: "Select",
         options: "Daily\nWeekly\nMonthly",
         default: "Monthly",
-        depends_on: "eval:in(['Installment','Subscription'], doc.collection_type)",
+        depends_on: "eval:in_list(['Installment','Subscription'], doc.collection_type)",
         reqd: 1,
       },
       {

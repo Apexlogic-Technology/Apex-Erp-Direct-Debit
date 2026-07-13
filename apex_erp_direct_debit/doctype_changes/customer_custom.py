@@ -33,7 +33,7 @@ def after_save(doc, method=None):
 	if not settings.is_enabled:
 		return
 
-	if settings.integration_mode not in ("Bridge - KolectPay Business", "Bridge - SMCollect"):
+	if settings.integration_mode != "KolectPay Mode":
 		return
 
 	if not settings.auto_push_customer:

@@ -70,7 +70,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Integration Mode",
-   "options": "\nDirect - Hubtel\nBridge - KolectPay Business\nBridge - SMCollect",
+   "options": "\nDirect Mode\nKolectPay Mode",
    "reqd": 1
   },
   {
@@ -84,25 +84,25 @@
    "read_only": 1,
    "default": "/api/method/apex_erp_direct_debit.api.webhook.handle_hubtel",
    "description": "Set this as your callback URL in the Hubtel portal. Prefix with your site domain.",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "section_break_hubtel",
    "fieldtype": "Section Break",
    "label": "Hubtel Direct Debit Credentials",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "hubtel_client_id",
    "fieldtype": "Data",
    "label": "Hubtel Client ID",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "hubtel_client_secret",
    "fieldtype": "Password",
    "label": "Hubtel Client Secret",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "col_break_hubtel",
@@ -111,54 +111,55 @@
   {
    "fieldname": "hubtel_collection_account",
    "fieldtype": "Data",
-   "label": "Hubtel Collection Account",
-   "description": "Hubtel merchant account number",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "label": "Hubtel Collection Account Number",
+   "description": "Your Hubtel merchant account number (e.g. 12345)",
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "hubtel_webhook_secret",
    "fieldtype": "Password",
-   "label": "Hubtel Webhook Secret",
-   "description": "Used to verify HMAC signatures on Hubtel callbacks",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "label": "Hubtel Webhook HMAC Secret",
+   "description": "Optional. Signature verification key (e.g. from Hubtel developer dashboard)",
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "hubtel_allowed_ips",
    "fieldtype": "Small Text",
-   "label": "Hubtel Allowed IPs",
-   "description": "Comma-separated. Leave blank to skip IP verification.",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "label": "Allowed IPs (comma-separated)",
+   "description": "Leave blank to skip IP check. e.g. 196.6.100.1, 196.6.100.2",
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "section_break_bridge",
    "fieldtype": "Section Break",
    "label": "Bridge Configuration",
-   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+   "depends_on": "eval:doc.integration_mode=='KolectPay Mode'"
   },
   {
    "fieldname": "bridge_base_url",
    "fieldtype": "Data",
    "label": "Bridge Base URL",
    "description": "e.g. https://app.kolectpay.com",
-   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+   "depends_on": "eval:doc.integration_mode=='KolectPay Mode'"
   },
   {
    "fieldname": "bridge_api_token",
    "fieldtype": "Password",
    "label": "Bridge API Token",
    "description": "Bearer token for the KolectPay/SMCollect External API",
-   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+   "depends_on": "eval:doc.integration_mode=='KolectPay Mode'"
   },
   {
    "fieldname": "col_break_bridge",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "depends_on": "eval:doc.integration_mode=='KolectPay Mode'"
   },
   {
    "default": "30",
    "fieldname": "bridge_timeout_seconds",
    "fieldtype": "Int",
    "label": "Request Timeout (seconds)",
-   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+   "depends_on": "eval:doc.integration_mode=='KolectPay Mode'"
   },
   {
    "fieldname": "section_break_accounting",
@@ -201,35 +202,34 @@
    "fieldname": "section_break_reminders",
    "fieldtype": "Section Break",
    "label": "SMS & WhatsApp Reminders",
-   "description": "Only used in Direct - Hubtel mode. Bridge mode leaves reminders to KolectPay/SMCollect.",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "default": "0",
    "fieldname": "send_sms_reminders",
    "fieldtype": "Check",
    "label": "Send Pre-Debit SMS Reminders",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "default": "1",
    "fieldname": "sms_days_before",
    "fieldtype": "Int",
    "label": "Days Before Debit to Send SMS/WhatsApp",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && (doc.send_sms_reminders || doc.send_whatsapp_reminders)"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode' && (doc.send_sms_reminders || doc.send_whatsapp_reminders)"
   },
   {
    "fieldname": "sms_provider",
    "fieldtype": "Select",
    "label": "SMS Provider",
    "options": "\nHubtel SMS\nCustom",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_sms_reminders"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode' && doc.send_sms_reminders"
   },
   {
    "fieldname": "sms_api_key",
    "fieldtype": "Password",
    "label": "SMS API Key",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_sms_reminders"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode' && doc.send_sms_reminders"
   },
   {
    "fieldname": "col_break_reminders",
@@ -240,25 +240,25 @@
    "fieldname": "send_whatsapp_reminders",
    "fieldtype": "Check",
    "label": "Send Pre-Debit WhatsApp Reminders",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel'"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode'"
   },
   {
    "fieldname": "whatsapp_api_url",
    "fieldtype": "Data",
    "label": "WhatsApp API URL",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_whatsapp_reminders"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode' && doc.send_whatsapp_reminders"
   },
   {
    "fieldname": "whatsapp_api_token",
    "fieldtype": "Password",
    "label": "WhatsApp API Token",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_whatsapp_reminders"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode' && doc.send_whatsapp_reminders"
   },
   {
    "fieldname": "whatsapp_sender_phone",
    "fieldtype": "Data",
    "label": "WhatsApp Sender Phone",
-   "depends_on": "eval:doc.integration_mode=='Direct - Hubtel' && doc.send_whatsapp_reminders"
+   "depends_on": "eval:doc.integration_mode=='Direct Mode' && doc.send_whatsapp_reminders"
   },
   {
    "default": "0",
@@ -296,7 +296,7 @@
    "fieldtype": "Check",
    "label": "Auto-Push Customer to Bridge as Debtor",
    "description": "When a Customer's DD mobile number is saved, push them to KolectPay/SMCollect",
-   "depends_on": "eval:in(['Bridge - KolectPay Business','Bridge - SMCollect'], doc.integration_mode)"
+   "depends_on": "eval:doc.integration_mode=='KolectPay Mode'"
   },
   {
    "default": "0",

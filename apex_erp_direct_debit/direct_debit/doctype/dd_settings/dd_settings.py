@@ -15,7 +15,7 @@ class DDSettings(Document):
 
 	def _validate_mode_credentials(self):
 		mode = self.integration_mode
-		if mode == "Direct - Hubtel":
+		if mode == "Direct Mode":
 			missing = []
 			if not self.hubtel_client_id:
 				missing.append("Hubtel Client ID")
@@ -25,18 +25,18 @@ class DDSettings(Document):
 				missing.append("Hubtel Collection Account")
 			if missing:
 				frappe.throw(
-					f"The following fields are required for Direct - Hubtel mode: {', '.join(missing)}",
+					f"The following fields are required for Direct Mode: {', '.join(missing)}",
 					title="DD Settings — Missing Credentials",
 				)
-		elif mode in ("Bridge - KolectPay Business", "Bridge - SMCollect"):
+		elif mode == "KolectPay Mode":
 			if not self.bridge_base_url:
 				frappe.throw(
-					"Bridge Base URL is required for Bridge mode.",
+					"Bridge Base URL is required for KolectPay Mode.",
 					title="DD Settings — Missing Bridge URL",
 				)
 			if not self.bridge_api_token:
 				frappe.throw(
-					"Bridge API Token is required for Bridge mode.",
+					"Bridge API Token is required for KolectPay Mode.",
 					title="DD Settings — Missing Bridge Token",
 				)
 

@@ -45,12 +45,10 @@ def get_provider(company: str):
 	doc = frappe.get_doc("DD Settings", settings.name)
 	mode = doc.integration_mode
 
-	if mode == "Direct - Hubtel":
+	if mode == "Direct Mode":
 		return HubtelService(doc)
-	elif mode == "Bridge - KolectPay Business":
+	elif mode == "KolectPay Mode":
 		return KolectPayBridge(doc)
-	elif mode == "Bridge - SMCollect":
-		return SMCollectBridge(doc)
 	else:
 		frappe.throw(
 			f"Unknown integration mode '{mode}' in DD Settings for '{company}'.",

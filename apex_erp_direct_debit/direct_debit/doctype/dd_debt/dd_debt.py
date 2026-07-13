@@ -37,7 +37,7 @@ class DDDebt(Document):
 		settings = frappe.get_doc("DD Settings", self.company)
 		if not settings.is_enabled:
 			return
-		if settings.integration_mode not in ("Bridge - KolectPay Business", "Bridge - SMCollect"):
+		if settings.integration_mode != "KolectPay Mode":
 			return
 		if self.bridge_debt_id:
 			return

@@ -163,9 +163,9 @@ def _run_due_installments():
 	""", {"today": today_date}, as_dict=True)
 
 	for row in due_rows:
-		# Only process Direct - Hubtel companies
+		# Only process Direct Mode companies
 		mode = frappe.db.get_value("DD Settings", {"company": row.company}, "integration_mode")
-		if mode != "Direct - Hubtel":
+		if mode != "Direct Mode":
 			continue
 
 		# Check mandate is still approved
@@ -242,7 +242,7 @@ def sync_from_bridge():
 		"DD Settings",
 		filters={
 			"is_enabled": 1,
-			"integration_mode": ["in", ["Bridge - KolectPay Business", "Bridge - SMCollect"]],
+			"integration_mode": "KolectPay Mode",
 		},
 		fields=["name", "company"],
 	)
@@ -275,13 +275,13 @@ def sync_from_bridge():
 def send_debit_reminders():
 	"""
 	Send SMS and/or WhatsApp reminders to customers whose next installment is due
-	in `sms_days_before` days. Only for Direct - Hubtel companies.
+	in `sms_days_before` days. Only for Direct Mode companies.
 	"""
 	direct_settings = frappe.get_all(
 		"DD Settings",
 		filters={
 			"is_enabled": 1,
-			"integration_mode": "Direct - Hubtel",
+			"integration_mode": "Direct Mode",
 		},
 		fields=[
 			"company", "sms_days_before", "send_sms_reminders", 
@@ -661,14 +661,14 @@ def retry_failed_installments():
 	Re-attempt debits for failed installments where:
 	  - retry_count < max_retry_attempts (from DD Settings)
 	  - last failure was >= retry_interval_days ago
-	  - debt is Active and mandate is Approved (Direct - Hubtel only)
+	  - debt is Active and mandate is Approved (Direct Mode only)
 	"""
 	from apex_erp_direct_debit.services.provider_factory import get_provider
 	from frappe.utils import add_days
 
 	direct_settings = frappe.get_all(
 		"DD Settings",
-		filters={"is_enabled": 1, "integration_mode": "Direct - Hubtel"},
+		filters={"is_enabled": 1, "integration_mode": "Direct Mode"},
 		fields=["company", "max_retry_attempts", "retry_interval_days", "send_failure_alerts",
 				"send_sms_reminders", "send_whatsapp_reminders"],
 	)

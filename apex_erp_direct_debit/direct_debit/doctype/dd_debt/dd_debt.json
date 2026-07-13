@@ -174,7 +174,7 @@
    "fieldtype": "Select",
    "label": "Frequency",
    "options": "\nDaily\nWeekly\nMonthly",
-   "depends_on": "eval:in(['Installment','Subscription'], doc.collection_type)"
+   "depends_on": "eval:in_list(['Installment','Subscription'], doc.collection_type)"
   },
   {
    "fieldname": "number_of_installments",
