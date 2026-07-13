@@ -1,19 +1,20 @@
 {
  "charts": [],
- "content": "[{\"id\":\"shortcut_section\",\"type\":\"header\",\"data\":{\"text\":\"Direct Debit Shortcuts\"}},{\"id\":\"shortcuts\",\"type\":\"shortcut\",\"data\":{\"shortcuts\":[{\"label\":\"Settings\",\"type\":\"DocType\",\"link_to\":\"DD Settings\",\"icon\":\"settings\",\"color\":\"blue\"},{\"label\":\"Mandates\",\"type\":\"DocType\",\"link_to\":\"DD Mandate\",\"icon\":\"user\",\"color\":\"green\"},{\"label\":\"Collections (Debts)\",\"type\":\"DocType\",\"link_to\":\"DD Debt\",\"icon\":\"calculator\",\"color\":\"orange\"},{\"label\":\"Transactions\",\"type\":\"DocType\",\"link_to\":\"DD Transaction\",\"icon\":\"payment\",\"color\":\"yellow\"},{\"label\":\"Reconciliation Reports\",\"type\":\"DocType\",\"link_to\":\"DD Reconciliation Report\",\"icon\":\"file\",\"color\":\"purple\"},{\"label\":\"Webhook Logs\",\"type\":\"DocType\",\"link_to\":\"DD Webhook Log\",\"icon\":\"list\",\"color\":\"grey\"},{\"label\":\"Notification Logs\",\"type\":\"DocType\",\"link_to\":\"DD Notification Log\",\"icon\":\"chat\",\"color\":\"pink\"}]}}]",
- "creation": "2026-07-13 00:00:00.000000",
+ "content": "[{\"id\":\"dd_shortcuts\",\"type\":\"shortcut\",\"data\":{\"shortcuts\":[{\"label\":\"DD Settings\",\"type\":\"DocType\",\"link_to\":\"DD Settings\",\"icon\":\"\u2699\ufe0f\",\"color\":\"#5e64ff\"},{\"label\":\"Mandates\",\"type\":\"DocType\",\"link_to\":\"DD Mandate\",\"icon\":\"\u2705\",\"color\":\"#2490ef\"},{\"label\":\"Collections\",\"type\":\"DocType\",\"link_to\":\"DD Debt\",\"icon\":\"\ud83d\udcb0\",\"color\":\"#f8814f\"},{\"label\":\"Transactions\",\"type\":\"DocType\",\"link_to\":\"DD Transaction\",\"icon\":\"\ud83d\udccb\",\"color\":\"#ffd600\"},{\"label\":\"Reconciliation\",\"type\":\"DocType\",\"link_to\":\"DD Reconciliation Report\",\"icon\":\"\ud83d\udcca\",\"color\":\"#7575ff\"},{\"label\":\"Webhook Logs\",\"type\":\"DocType\",\"link_to\":\"DD Webhook Log\",\"icon\":\"\ud83d\udd17\",\"color\":\"#aaa\"},{\"label\":\"Notification Logs\",\"type\":\"DocType\",\"link_to\":\"DD Notification Log\",\"icon\":\"\ud83d\udcac\",\"color\":\"#ff7eb6\"}]}}]",
+ "creation": "2026-07-13 23:15:00.000000",
  "docstatus": 0,
  "doctype": "Workspace",
- "icon": "payment",
+ "icon": "\ud83d\udcb3",
  "is_public": 1,
  "label": "Direct Debit",
  "links": [],
- "modified": "2026-07-13 00:00:00.000000",
+ "modified": "2026-07-13 23:15:00.000000",
  "modified_by": "Administrator",
  "module": "Direct Debit",
  "name": "Direct Debit",
  "owner": "Administrator",
  "parent_page": "",
+ "public": 1,
  "roles": [
   {
    "role": "System Manager"
@@ -22,6 +23,7 @@
    "role": "Accounts Manager"
   }
  ],
- "sequence_id": 1,
- "shortcuts": []
+ "sequence_id": 50,
+ "shortcuts": [],
+ "title": "Direct Debit"
 }
